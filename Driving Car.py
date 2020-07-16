@@ -1,18 +1,14 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# In[1]:
 
 
 import cv2
 import numpy as np
 
-
-# In[2]:
-
-
 import ctypes
 import time
+
+
+#-----------------map keyboard buttons to dx keys or hex keys--------------
 
 SendInput = ctypes.windll.user32.SendInput
 
@@ -67,11 +63,12 @@ def ReleaseKey(hexKeyCode):
    
 
 
-# In[4]:
+#-------------- uses the laptop camera to monitor and detect colors to take actions--------------
 
 
 vid=cv2.VideoCapture(0)
 
+#  detect the color
 
 def search_for_color(img):
     i=0
@@ -93,7 +90,8 @@ def search_for_color(img):
 
         i+=1
     return red
-    
+
+
 color=[255,255,255]
 while True:
     try:
@@ -109,7 +107,7 @@ while True:
         
         cv2.rectangle(frame,(280,300),(340,400),color,3)
        
-        
+        # ***********  Note : the game should be active to recieve inputs while the code is being excuted*********        
         if   is_red:
             PressKey(0x11)
         else:
@@ -126,13 +124,9 @@ vid.release()
 cv2.destroyAllWindows() 
 
 
-# In[ ]:
 
 
 
-
-
-# In[ ]:
 
 
 
